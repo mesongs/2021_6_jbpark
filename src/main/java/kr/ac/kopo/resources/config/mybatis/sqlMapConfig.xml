@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="kr.ac.kopo.member.vo.MemberVO" alias="memberVO" />
+		<typeAlias type="kr.ac.kopo.member.vo.LoginVO" alias="loginVO" />
+		<typeAlias type="kr.ac.kopo.receipt.vo.ReceiptFileVO" alias="receiptFileVO" />
+		<typeAlias type="kr.ac.kopo.receipt.vo.ReceiptVO" alias="receiptVO" />
+		<typeAlias type="kr.ac.kopo.receipt.vo.searchDateVO" alias="searchDateVO" />
+		<typeAlias type="kr.ac.kopo.receipt.vo.AcceptRejectVO" alias="acceptRejectVO"/>
+		<typeAlias type="kr.ac.kopo.receipt.vo.RejectReceiptVO" alias="rejectReceiptVO"/>
+		<typeAlias type="kr.ac.kopo.financial.vo.SalesVO" alias="salesVO"/>
+		<typeAlias type="kr.ac.kopo.financial.vo.SalesReportVO" alias="SalesReportVO"/>
+		<typeAlias type="kr.ac.kopo.financial.vo.ReturnSalesVO" alias="returnSalesVO"/>
+		<typeAlias type="kr.ac.kopo.taxAgent.vo.TaxCustomerVO" alias="taxCustomerVO"/>
+		<typeAlias type="kr.ac.kopo.receipt.vo.IntegratedSalesVO" alias="integratedSalesVO"/>
+		<typeAlias type="kr.ac.kopo.financial.vo.ReturnPurchaseVO" alias="returnPurchaseVO"/>
+		<typeAlias type="kr.ac.kopo.receipt.vo.HomeTaxDigitalVO" alias="homeTaxDigitalVO"/>
+		<typeAlias type="kr.ac.kopo.taxAgent.vo.customerPurchaseVO" alias="customerPurchaseVO"/>
+		<typeAlias type="kr.ac.kopo.taxAgent.vo.CustomerSalesVO" alias="customerSalesVO"/>
+		<typeAlias type="kr.ac.kopo.taxAgent.vo.WriteInfoVO" alias="writeInfoVO"/>
+		<typeAlias type="kr.ac.kopo.taxAgent.vo.TaxUserInfoVO" alias="taxUserInfoVO"/>
+		<typeAlias type="kr.ac.kopo.taxAgent.vo.TaxBillVO" alias="taxBillVO"/>
+		<typeAlias type="kr.ac.kopo.financial.vo.SmsReportInfoVO" alias="smsReportInfoVO"/>
+		
+	</typeAliases>
+</configuration>

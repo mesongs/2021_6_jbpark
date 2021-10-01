@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="taxAgent.taxAgentDAO">
+	
+	<resultMap type="taxCustomerVO" id="taxCustomerMap">
+		<result column="user_id" property="userId" />
+		<result column="BUSINESS_NO" property="businessNo" />
+		<result column="store_name" property="storeName" />
+		<result column="ADDR_ROAD" property="addrRoad" />
+		<result column="ADDR_JIBUN" property="addrJibun" />
+		<result column="ADDR_DETAIL" property="addrDetail" />
+		<result column="OPEN_DATE" property="openDate" />
+	</resultMap>
+	
+	<resultMap type="customerPurchaseVO" id="customerPurchaseMap">
+		<result column="receipt_code" property="receiptCode" />
+		<result column="receipt_kind_purchase" property="receiptKindPurchase" />
+		<result column="store_name" property="storeName"/>
+		<result column="receipt_date" property="receiptDate" />
+		<result column="supplier_business_no" property="supplierBusinessNo"/>
+		<result column="purchase_sum" property="purchaseSum" />
+		<result column="purchase_amount" property="purchaseAmountSum" /> 
+		<result column="purchase_vat" property="purchaseVatSum" />
+	</resultMap>
+	
+	<resultMap type="taxUserInfoVO" id="taxUserInfoMap">
+		<result column="BUSINESS_NO" property="bNo" />
+		<result column="addr_jibun" property="addrJibun" />
+		<result column="store_name" property="storeName" />
+	</resultMap>
+	
+	<resultMap type="customerSalesVO" id="customerSalesMap">
+		<result column="approval_no" property="approvalNo"></result>
+		<result column="deal_date" property="dealDate"></result>
+		<result column="sales_sum" property="salesSum"/>
+		<result column="sales_amount_sum" property="salesAmountSum"/>
+		<result column="sales_vat_sum" property="salesVatSum"/>
+	</resultMap>
+	
+	<resultMap type="taxBillVO" id="taxBillMap">
+		<result column="HR_SUPPLIER_BUSINESS_NO" property="hrSupplierBNo" />
+		<result column="hr_amount" property="hrAmount" />
+		<result column="hr_vat" property="hrVat"/>
+		<result column="hr_store_name" property="hrStoreName" />
+		<result column="hr_taxBill_count" property="hrTaxBillCount" />
+		<result column="hr_amount_sum" property="hrAmountSum" />
+		<result column="hr_vat_sum" property="hrVatSum"/>
+		<result column="digital_taxBill_count" property="digitalTaxBillCount"/>
+		<result column="digital_amount_sum" property="digitalAmountSum"/>
+		<result column="digital_vat_sum" property="digitalVatSum"/>
+	</resultMap>
+	
+	<!-- 세무사 - 자신이 담당하고 있는 회원들의 목록을 가져옴 -->
+	<select id="getCustomerList" resultType="taxCustomerVO" parameterType="String" resultMap="taxCustomerMap">
+		select a.user_id, a.name, a.phone, a.email, b.business_no, b.store_name, b.open_date, b.zipcode, b.addr_road, b.addr_jibun from tb_user a, TB_BUSINESS b
+		where a.user_id = b.user_id and tax_agent =#{taxAgentId}
+	</select>
+	
+	<select id="getCustomerInfo" resultType="taxCustomerVO" parameterType="String" resultMap="taxCustomerMap">
+		select a.user_id, name, phone, email, store_name, business_no, store_name, zipcode, addr_road, addr_jibun, addr_detail, open_date from tb_user a, TB_BUSINESS b
+		where a.user_id = b.user_id and business_no =#{businessNo}
+	</select>
+	
+	
+	<!-- 최근 카드 매출 데이터 -->
+	<select id="salesSum"  resultType="customerSalesVO" parameterType="String">
+		select sum(approval_amount) as slaesSum from tb_card_sales where business_no=#{businessNo} and deal_date between '20210101' and '20210630'
+	</select>
+	
+	<!-- 세무신고를 위한 user data -->
+	<select id="taxUserInfoSearch" resultType="taxUserInfoVO" parameterType="String" resultMap="taxUserInfoMap" >
+		select a.name, store_name, SUBSTR(business_no, 0,3)||'-'||SUBSTR(business_no, 4,2)||'-'||SUBSTR(business_no,6, 5) as business_no, addr_jibun from tb_user a, tb_business b
+		where a.user_id = b.user_id and business_no=#{businessNo}
+	</select>
+	
+	<!-- 통합 매입내역 조회 - ajax -->
+	<select id="customerPurchaseListAjax" resultType="customerPurchaseVO" parameterType="hashMap" resultMap="customerPurchaseMap">
+		<!-- #{selectYear} #{selectOrder} -->
+		select receipt_date, RECEIPT_CODE, SUPPLIER_BUSINESS_NO, store_name, amount, vat, calSum
+            from (select to_char(to_date(receipt_date, 'yyyy-mm-dd'), 'yyyy-mm-dd') as receipt_date, RECEIPT_CODE, SUBSTR(SUPPLIER_BUSINESS_NO, 0,3)||'-'||SUBSTR(SUPPLIER_BUSINESS_NO, 4,2)||'-'||SUBSTR(SUPPLIER_BUSINESS_NO, 6, 5) as SUPPLIER_BUSINESS_NO, store_name, amount, vat, calSum   from(select decode(receipt_code, '001','세금계산서','002','계산서','003','카드영수증','004','간이영수증','005','현금영수증') as RECEIPT_CODE, STORE_NAME, amount, vat, amount+vat as calSum, receipt_date, SUPPLIER_BUSINESS_NO
+			from tb_receipt where BUSINESS_NO='6052355236'
+			and receipt_status='P'  
+			<choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701'
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231'
+				</when>
+			</choose>
+			union
+			select decode(receipt_code, '001','세금계산서','002','계산서','003','카드영수증','004','간이영수증','005','현금영수증') as RECEIPT_CODE, store_name, amount, vat,amount+vat as calSum, receipt_date, SUPPLIER_BUSINESS_NO
+			from TB_PURCHASE where BUSINESS_NO='6052355236'
+			<choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701')
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231')
+				</when>
+			</choose>
+            order by receipt_date desc) where rownum <![CDATA[ <= ]]> 20
+	</select>
+	
+	<select id="purchasePerAjax" resultType="customerPurchaseVO" parameterType="hashMap" resultMap="customerPurchaseMap">
+		select  sum(calsum) as purchase_sum, sum(amount) as purchase_amount, sum(vat) purchase_vat from (select decode(receipt_code, '001','세금계산서','002','계산서','003','카드영수증','004','간이영수증','005','현금영수증') as RECEIPT_CODE, STORE_NAME, amount, vat, amount+vat as calSum, receipt_date, SUPPLIER_BUSINESS_NO
+			from tb_receipt where BUSINESS_NO='6052355236' and receipt_status='P'
+			<choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701'
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231'
+				</when>
+			</choose>
+			union
+			select decode(receipt_code, '001','세금계산서','002','계산서','003','카드영수증','004','간이영수증','005','현금영수증') as RECEIPT_CODE, store_name, amount, vat,amount+vat as calSum, receipt_date, SUPPLIER_BUSINESS_NO
+			from TB_PURCHASE where BUSINESS_NO='6052355236' 
+			<choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701')
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231')
+				</when>
+			</choose>
+
+	</select>
+	
+	<!-- 매입유형별 합계  -->
+	<select id="receiptKindSum" resultType="customerPurchaseVO" parameterType="hashMap" resultMap="customerPurchaseMap">
+		select receipt_code, sum(calsum) as receipt_kind_purchase from(select RECEIPT_CODE, STORE_NAME, amount, vat, amount+vat as calSum, receipt_date, SUPPLIER_BUSINESS_NO
+			from tb_receipt where BUSINESS_NO='6052355236' and receipt_status='P'
+			<choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701'
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231'
+				</when>
+			</choose>
+			union
+			select RECEIPT_CODE, store_name, amount, vat,amount+vat as calSum, receipt_date, SUPPLIER_BUSINESS_NO
+			from TB_PURCHASE where BUSINESS_NO='6052355236' 
+            <choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701')
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231')
+				</when>
+			</choose>
+            group by receipt_code
+	
+	
+	</select>
+	
+	<!-- 통합 매출 내역 조회(현재 카드 매출 집계) -->
+	<select id="getAllSalesList" parameterType="hashMap" resultType="customerPurchaseVO" resultMap="customerSalesMap">
+		select deal_date, approval_no, approval_amount as calSum, round((approval_amount / 1.1),0) as amount, approval_amount - round((approval_amount / 1.1),0) as vat 
+			from tb_card_sales
+			where BUSINESS_NO='6052355236' 
+			<choose>
+				<when test="selectOrder eq 1">
+					and deal_date between #{selectYear}||'0101' and #{selectYear}||'0701'
+				</when>
+				<when test="selectOrder eq 2">
+					and deal_date between #{selectYear}||'0701' and #{selectYear}||'1231'
+				</when>
+			</choose>
+			order by deal_date desc
+	</select>
+	
+	<select id="getSalesPerSum" parameterType="hashMap" resultType="customerPurchaseVO" resultMap="customerSalesMap">
+		select sum(approval_amount) as sales_sum, sum(round((approval_amount / 1.1),0)) as sales_amount_sum, sum(approval_amount - round((approval_amount / 1.1),0)) as sales_vat_sum 
+		from tb_card_sales
+		where BUSINESS_NO='6052355236' 
+		<choose>
+				<when test="selectOrder eq 1">
+					and deal_date between #{selectYear}||'0101' and #{selectYear}||'0701'
+				</when>
+				<when test="selectOrder eq 2">
+					and deal_date between #{selectYear}||'0701' and #{selectYear}||'1231'
+				</when>
+		</choose>
+		order by deal_date desc
+	</select>
+	
+	<!-- 수기 세금계산서 매입 - 수기 세금계산서 list, 작성폼에 mapping-->
+	<select id="handWriteTaxBill" parameterType="hashMap" resultType="taxBillVO" resultMap="taxBillMap">
+		select rownum as no, HR_SUPPLIER_BUSINESS_NO,hr_store_name, hr_amount, hr_vat from (select SUBSTR(SUPPLIER_BUSINESS_NO, 0,3)||'-'||SUBSTR(SUPPLIER_BUSINESS_NO, 4,2)||'-'||SUBSTR(SUPPLIER_BUSINESS_NO, 6,5) as HR_SUPPLIER_BUSINESS_NO,
+        store_name as hr_store_name, amount as hr_amount, vat as hr_vat
+		from tb_receipt
+		where business_no='6052355236' and receipt_code='001' and receipt_status='P'
+		<choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701'
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231'
+				</when>
+		</choose>
+		order by receipt_date desc)
+	</select>
+	
+	<!-- 수기 세금계산서 매입 - 수기 세금계산서 갯 수, 공급가액 / 세액 합계 -->
+	<select id="hrCountSum" parameterType="hashMap" resultType="taxBillVO" resultMap="taxBillMap">
+		select count(*) as hr_TaxBill_Count, sum(amount) as hr_amount_sum, sum(vat) as hr_vat_sum
+		from tb_receipt where business_no='6052355236' and receipt_code='001' and receipt_status='P' 
+		<choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701'
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231'
+				</when>
+		</choose>
+	</select>
+	
+	<!-- 전자 세금계산서 - 갯 수, 공급가액 / 세액 합계  -->
+	<select id="digitalCountSum" parameterType="hashMap" resultType="taxBillVO" resultMap="taxBillMap">
+		select count(*) as digital_taxBill_count, sum(amount) as digital_amount_sum, sum(vat) as digital_vat_sum
+		from tb_purchase where receipt_code='001'
+		<choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701'
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231'
+				</when>
+		</choose>
+	</select>
+	
+	
+	<select id="totalRecordCount" parameterType="hashMap" resultType="int">
+		select count(*) as totalRecord
+			from tb_card_sales
+			where BUSINESS_NO='6052355236' 
+			<choose>
+				<when test="selectOrder eq 1">
+					and deal_date between #{selectYear}||'0101' and #{selectYear}||'0701'
+				</when>
+				<when test="selectOrder eq 2">
+					and deal_date between #{selectYear}||'0701' and #{selectYear}||'1231'
+				</when>
+			</choose>
+			order by deal_date desc
+	</select>
+	
+	<!-- 매출! 조회 ajax 첫 페이지 List  -->
+	<select id="getFirstPageList" parameterType="hashMap" resultType="customerPurchaseVO" resultMap="customerSalesMap">
+		select deal_date, approval_no, calSum, amount, vat from (select deal_date, approval_no, approval_amount as calSum, round((approval_amount / 1.1),0) as amount, approval_amount - round((approval_amount / 1.1),0) as vat 
+			from tb_card_sales
+			where BUSINESS_NO='6052355236'
+			<choose>
+				<when test="selectOrder eq 1">
+					and deal_date between #{selectYear}||'0101' and #{selectYear}||'0701'
+				</when>
+				<when test="selectOrder eq 2">
+					and deal_date between #{selectYear}||'0701' and #{selectYear}||'1231'
+				</when>
+			</choose>
+			order by deal_date desc) a
+            where rownum between #{startRow} and #{endRow}
+	</select>
+	
+	
+	<!-- 통합 매입내역 총 레코드 개 수 -->
+	<select id="totalPurchaseRecordCount" parameterType="hashMap" resultType="int">
+		select count(*) as purchaseTotal from(select to_char(to_date(receipt_date, 'yyyy-mm-dd'), 'yyyy-mm-dd') as receipt_date, RECEIPT_CODE, SUBSTR(SUPPLIER_BUSINESS_NO, 0,3)||'-'||SUBSTR(SUPPLIER_BUSINESS_NO, 4,2)||'-'||SUBSTR(SUPPLIER_BUSINESS_NO, 6, 5) as SUPPLIER_BUSINESS_NO, store_name, amount, vat, calSum   from(select decode(receipt_code, '001','세금계산서','002','계산서','003','카드영수증','004','간이영수증','005','현금영수증') as RECEIPT_CODE, STORE_NAME, amount, vat, amount+vat as calSum, receipt_date, SUPPLIER_BUSINESS_NO
+			from tb_receipt where BUSINESS_NO='6052355236'
+			and receipt_status='P'  
+            <choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701'
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231'
+				</when>
+			</choose>
+			union
+			select decode(receipt_code, '001','세금계산서','002','계산서','003','카드영수증','004','간이영수증','005','현금영수증') as RECEIPT_CODE, store_name, amount, vat,amount+vat as calSum, receipt_date, SUPPLIER_BUSINESS_NO
+			from TB_PURCHASE where BUSINESS_NO='6052355236'
+             <choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701')
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231')
+				</when>
+			</choose>
+            order by receipt_date desc)
+	</select>
+	
+	
+	
+	
+	
+	<!-- 통합 매입내역 조회 첫 페이지 List  -->
+	<select id="getPurchaseFirstList" resultType="customerPurchaseVO" parameterType="hashMap" resultMap="customerPurchaseMap">
+		select receipt_date, RECEIPT_CODE, SUPPLIER_BUSINESS_NO, store_name, amount,vat,calsum  from(select to_char(to_date(receipt_date, 'yyyy-mm-dd'), 'yyyy-mm-dd') as receipt_date, RECEIPT_CODE, SUBSTR(SUPPLIER_BUSINESS_NO, 0,3)||'-'||SUBSTR(SUPPLIER_BUSINESS_NO, 4,2)||'-'||SUBSTR(SUPPLIER_BUSINESS_NO, 6, 5) as SUPPLIER_BUSINESS_NO, store_name, amount, vat, calSum   from(select decode(receipt_code, '001','세금계산서','002','계산서','003','카드영수증','004','간이영수증','005','현금영수증') as RECEIPT_CODE, STORE_NAME, amount, vat, amount+vat as calSum, receipt_date, SUPPLIER_BUSINESS_NO
+			from tb_receipt where BUSINESS_NO='6052355236'
+			and receipt_status='P'
+            <choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701'
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231'
+				</when>
+			</choose>
+			union
+			select decode(receipt_code, '001','세금계산서','002','계산서','003','카드영수증','004','간이영수증','005','현금영수증') as RECEIPT_CODE, store_name, amount, vat,amount+vat as calSum, receipt_date, SUPPLIER_BUSINESS_NO
+			from TB_PURCHASE where BUSINESS_NO='6052355236'
+            <choose>
+				<when test="selectOrder eq 1">
+					and receipt_date between #{selectYear}||'0101' and #{selectYear}||'0701')
+				</when>
+				<when test="selectOrder eq 2">
+					and receipt_date between #{selectYear}||'0701' and #{selectYear}||'1231')
+				</when>
+			</choose>
+            order by receipt_date desc) a
+            where rownum between #{startRow} and #{endRow}
+	</select>
+	
+			
+			
+			
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

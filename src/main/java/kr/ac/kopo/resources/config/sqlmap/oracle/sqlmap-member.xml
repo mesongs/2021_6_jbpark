@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member.memberDAO">
+	
+	<resultMap type="loginVO" id="loginMap">
+		<result column="user_id" property="id" />
+		<result column="user_password" property="password" />
+		<result column="USER_STATUS" property="userStatus" />
+		<result column="TAX_AGENT_EMAIL" property="taxAgentEmail" />
+		<result column="business_no" property="businessNo" />
+		<result column="HOMTAX_AGREEMENT" property="homtaxAgreement"/>
+		<result column="store_name" property="storeName" />
+	</resultMap>
+	
+	<select id="idCheck" resultType="String">
+		select user_id
+		from tb_user
+		where user_id=#{inputId}
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="loginVO" resultType="loginVO" resultMap="loginMap">
+		select a.user_id, a.user_password, name, email, USER_STATUS, HOMTAX_AGREEMENT, AGREEMENT, TAX_AGENT_EMAIL, business_no, store_name from tb_user a, TB_BUSINESS b
+		where a.user_id = b.user_id
+		and a.user_id = #{id} and a.user_password = #{password}
+	</select>
+	
+	<!-- 카카오 로그인  -->
+	<select id="kakaoLogin" parameterType="loginVO" resultType="loginVO" resultMap="loginMap">
+		select user_id
+		from tb_user
+		where user_id = #{id}
+	</select>
+	
+	<insert id="signUpMember" parameterType="memberVO">
+		insert into TB_USER(user_id, user_password , name, phone, email, tax_agent_email, rrn)
+		VALUES(#{userId}, #{userPassword}, #{name}, #{phone}, concat(#{emailId},#{domain}), concat(#{taxAgentEmailId},#{taxAgentDomain}), concat(#{fRrn},#{bRrn}))
+	</insert>
+	
+	<insert id="signUpBusiness" parameterType="memberVO">	
+		INSERT INTO TB_BUSINESS(business_no, store_name, zipCode, addr_road, addr_jibun, addr_detail, user_id, open_date)
+        	VALUES(#{businessNo}, #{storeName}, #{zipCode}, #{addrRoad}, #{addrJibun}, #{addrDetail}, #{userId}, to_date(#{openDate}, 'yy/mm/dd'))
+	</insert>
+	
+	
+</mapper>
