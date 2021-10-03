@@ -17,16 +17,16 @@
 
 
 # 2. 프로젝트 제안서
-
 <img src="logo.png"/><br>
 ## [**하나WITH 제안서**](/하나WITH_제안서.pptx)<br>
    
+ ###ERD - 하나WITH
+ <img src="erd1.png"/><br>
  
+ ###ERD - 홈택스 & 여신금융협회
+ <img src="erd2.png"/><br>
 
 # 3. 프로젝트 결과
-프로젝트 결과를 추가하세요. 발표자료. 시연동영상을 추가하세요.
-
-## 발표 ppt
    <img src="logo.png"/><br>
 ## [**하나WITH 최종 발표자료**](/하나WITH_최종발표자료.pptx)<br>
 
