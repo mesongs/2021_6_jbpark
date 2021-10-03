@@ -41,7 +41,7 @@
 ### **개발환경**<br>
 -Language : JAVA, JavaScript<br>
 -Database : Oracle 18c, MariaDB<br>
--Framewo가 : Spring, MyBatis, SpringBoot,　JPA<br>
+-Framework : Spring, MyBatis, SpringBoot, JPA<br>
 -Server :　Apache ,Tomcat9<br>
 -Cloud : GCP (Google Cloud Platform)
 -VCS :　GitHub<br>
