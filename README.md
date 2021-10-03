@@ -21,10 +21,9 @@
 ## [**하나WITH 제안서**](/하나WITH_제안서.pptx)<br>
    
 ### **ERD - 하나WITH**
- <img src="erd1.png"/><br>
- 
+ <img src="hanawith_erd"/><br>
 ### **ERD - 홈택스 & 여신금융협회**
- <img src="erd2.png"/><br>
+ <img src="others_erd.png"/><br>
 
 # 3. 프로젝트 결과
    <img src="logo.png"/><br>
