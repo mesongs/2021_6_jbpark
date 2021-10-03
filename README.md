@@ -19,7 +19,7 @@
 # 2. 프로젝트 제안서
 <img src="logo.png"/><br>
 ## [**하나WITH 제안서**](/하나WITH_제안서.pptx)<br>
-<img src="proposal.png"/><br>
+<img src="proposal2.png"/><br>
 
 # 3. 프로젝트 결과
    <img src="logo.png"/><br>
