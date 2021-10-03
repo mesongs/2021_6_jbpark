@@ -43,7 +43,7 @@
 -Database : Oracle 18c, MariaDB<br>
 -Framework : Spring, MyBatis, SpringBoot, JPA<br>
 -Server :　Apache ,Tomcat9<br>
--Cloud : GCP (Google Cloud Platform)
+-Cloud : GCP (Google Cloud Platform)<br>
 -VCS :　GitHub<br>
 -Library : JQuery, JSTL<br>
 -Etc :　HeidiSQL, MobaXterm, Putty<br>
