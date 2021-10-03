@@ -27,7 +27,8 @@
 프로젝트 결과를 추가하세요. 발표자료. 시연동영상을 추가하세요.
 
 ## 발표 ppt
-   <img src="logo.png"/>[**하나WITH 최종 발표자료**](/하나WITH_최종발표자료.pptx)<br>
+   <img src="logo.png"/><br>
+## [**하나WITH 최종 발표자료**](/하나WITH_최종발표자료.pptx)<br>
 
 ## 시연 동영상 
    
@@ -37,7 +38,7 @@
 
 본인 소개를 추가하세요
 
-|이름 |박종범|![gdKO](/gdko.jpg)|
+|이름 |박종범|![gdKO](/picture.jpg)|
 |연락처 | jb8049(@)naver.com |
 |skill set| Frontend - HTML, CSS, Javascript|
 | | Backend - Java, Spring, Oracle|
