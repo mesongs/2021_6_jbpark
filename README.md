@@ -18,33 +18,33 @@
 
 # 2. 프로젝트 제안서
 
-
+///제안서에는 시스템, 서비스 아키텍처 올리기
    <img src="logo.png"/><br>
 ## [**하나WITH 제안서**](/하나WITH_제안서.pptx)<br>
-   <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://youtu.be/iPW0AldBw9E" frameborder="0"></iframe>
+   
  
 
 # 3. 프로젝트 결과
 프로젝트 결과를 추가하세요. 발표자료. 시연동영상을 추가하세요.
 
-## 발표 ppt 
-   <img src="ppt.jpg"/>[발표자료](/project.pptx)<br>
+## 발표 ppt
+   <img src="logo.png"/>[**하나WITH 최종 발표자료**](/하나WITH_최종발표자료.pptx)<br>
 
 ## 시연 동영상 
-
-   <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/6LxbdIjWP04" frameborder="0"></iframe>
+   
+   <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://youtu.be/iPW0AldBw9E" frameborder="0"></iframe>
 
 # 4. 본인 소개
 
 본인 소개를 추가하세요
 
-|이름 |고길동|![gdKO](/gdko.jpg)|
-|연락처 | gdko(@)kopo.ac.kr|
+|이름 |박종범|![gdKO](/gdko.jpg)|
+|연락처 | jb8049(@)naver.com |
 |skill set| Frontend - HTML, CSS, Javascript|
 | | Backend - Java, Spring, Oracle|
-|자격증|  |
+|자격증| SQLD, ADSP |
 |수상| |
-|특기사항|  TOEIC 990 |
+|특기사항| |
 
 # 5. 기타
 그외 프로젝트를 더욱 설명할수 있는 것들을 추가하세요
