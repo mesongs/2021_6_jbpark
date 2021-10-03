@@ -20,10 +20,7 @@
 <img src="logo.png"/><br>
 ## [**하나WITH 제안서**](/하나WITH_제안서.pptx)<br>
    
-### **ERD - 하나WITH**
- <img src="hanawith_erd.png"/><br>
-### **ERD - 홈택스 & 여신금융협회**
- <img src="others_erd.png"/><br>
+
 
 # 3. 프로젝트 결과
    <img src="logo.png"/><br>
@@ -43,6 +40,14 @@
 
 # 5. 기타
 
+### **ERD - 하나WITH**
+ <img src="hanawith_erd.png"/><br>
+
+
+### **ERD - 홈택스 & 여신금융협회**
+ <img src="others_erd.png"/><br>
+
+
 ### **시스템 아키텍처**
 <img src="system.png"/><br>
 
@@ -50,4 +55,7 @@
 
 ### **서비스 아키텍처**
 <img src="service.png"/><br>
+
+
+
  
