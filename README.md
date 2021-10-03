@@ -34,48 +34,48 @@
 
 
 ### 개발기간
--2021. 09. 06 ~ 2021. 10. 05
+-2021. 09. 06 ~ 2021. 10. 05<br>
 
 ### 담당업무
--아이디어 기획/설계 , DB모델링, Front-End, Back-End, Deploy
+-아이디어 기획/설계 , DB모델링, Front-End, Back-End, Deploy<br>
 
-### 개발환경
--Language : JAVA, JavaScript
--Database : Oracle 18c, MariaDB
--Framewo가 : Spring, MyBatis, SpringBoot,　JPA
--Server :　Apache ,Tomcat9
+### 개발환경<br>
+-Language : JAVA, JavaScript<br>
+-Database : Oracle 18c, MariaDB<br>
+-Framewo가 : Spring, MyBatis, SpringBoot,　JPA<br>
+-Server :　Apache ,Tomcat9<br>
 -Cloud : GCP (Google Cloud Platform)
--VCS :　GitHub
--Library : JQuery, JSTL
--Etc :　HeidiSQL, MobaXterm, Putty
+-VCS :　GitHub<br>
+-Library : JQuery, JSTL<br>
+-Etc :　HeidiSQL, MobaXterm, Putty<br>
 
 ### 사용기술
--Spring MVC 기반 웹 개발
--OCR을 활용한 이미지 텍스트 추출(Template OCR, General　OCR)
--WebSocket을 활용한 영수증 승인/반려 실시간 알림
--JSON Web Token을 활용한 클라이언트 검증
--Apache POI를 활용한 매출/매입 내역 엑셀 다운로드
--Html2Canvas를 활용한 세금신고서 PDF파일 변환
--Spring Scheduler를 활용한 batch 처리
--Chart.js를 이용한 매출/매입 사업보고서 시각화
--공공데이터 포털API를 활용한 사업장 진위여부 확인 및 상태조회
--CoolSMS API를 이용한 알림 메세지 전송
--Ajax 비동기 통신을 활용한 화면 갱신
+-Spring MVC 기반 웹 개발<br>
+-OCR을 활용한 이미지 텍스트 추출(Template OCR, General　OCR)<br>
+-WebSocket을 활용한 영수증 승인/반려 실시간 알림<br>
+-JSON Web Token을 활용한 클라이언트 검증<br>
+-Apache POI를 활용한 매출/매입 내역 엑셀 다운로드<br>
+-Html2Canvas를 활용한 세금신고서 PDF파일 변환<br>
+-Spring Scheduler를 활용한 batch 처리<br>
+-Chart.js를 이용한 매출/매입 사업보고서 시각화<br>
+-공공데이터 포털API를 활용한 사업장 진위여부 확인 및 상태조회<br>
+-CoolSMS API를 이용한 알림 메세지 전송<br>
+-Ajax 비동기 통신을 활용한 화면 갱신<br>
 
 ### 주요기능
-[매입/매출 통합 관리]
-- 홈택스, 여신금융협회 연동을 통한 매입/매출 통합 관리
-- OCR을 통한 영수증 종류별 세금 신고 필수 정보 자동 완성 기능
-- 전자(세금)계산서, 현금영수증, 사업용 신용카드 내역 조회 기능
-- 전자/수기 영수증 통합 조회 기능(일별, 월별, 분기별 조회)
-[사업보고서 제공] 
-- 일간, 주간, 월간 매입/매출 현황 시각화 
-- 사업보고서 업데이트 알림
-[세금신고(부가가치세 신고)]
-- 고객 증빙자료 조회/수집 기능
-- 증빙 자료 요약 집계 기능
-- 세금신고서 자동 생성 기능
-- 신고서 PDF파일 변환 기능
+**[매입/매출 통합 관리]**<br>
+- 홈택스, 여신금융협회 연동을 통한 매입/매출 통합 관리<br>
+- OCR을 통한 영수증 종류별 세금 신고 필수 정보 자동 완성 기능<br>
+- 전자(세금)계산서, 현금영수증, 사업용 신용카드 내역 조회 기능<br>
+- 전자/수기 영수증 통합 조회 기능(일별, 월별, 분기별 조회)<br>
+**[사업보고서 제공]**<br>
+- 일간, 주간, 월간 매입/매출 현황 시각화<br>
+- 사업보고서 업데이트 알림<br>
+**[세금신고(부가가치세 신고)]**<br>
+- 고객 증빙자료 조회/수집 기능<br>
+- 증빙 자료 요약 집계 기능<br>
+- 세금신고서 자동 생성 기능<br>
+- 신고서 PDF파일 변환 기능<br>
 
 
 # 4. 본인 소개
