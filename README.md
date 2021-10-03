@@ -32,14 +32,13 @@
    
    <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/n-vYRwkgDJQ" frameborder="0"></iframe>
 
-
-### 개발기간
+### **개발기간**
 -2021. 09. 06 ~ 2021. 10. 05<br>
 
-### 담당업무
+### **담당업무**
 -아이디어 기획/설계 , DB모델링, Front-End, Back-End, Deploy<br>
 
-### 개발환경<br>
+### **개발환경**<br>
 -Language : JAVA, JavaScript<br>
 -Database : Oracle 18c, MariaDB<br>
 -Framewo가 : Spring, MyBatis, SpringBoot,　JPA<br>
@@ -49,7 +48,7 @@
 -Library : JQuery, JSTL<br>
 -Etc :　HeidiSQL, MobaXterm, Putty<br>
 
-### 사용기술
+### **사용기술**
 -Spring MVC 기반 웹 개발<br>
 -OCR을 활용한 이미지 텍스트 추출(Template OCR, General　OCR)<br>
 -WebSocket을 활용한 영수증 승인/반려 실시간 알림<br>
@@ -62,7 +61,7 @@
 -CoolSMS API를 이용한 알림 메세지 전송<br>
 -Ajax 비동기 통신을 활용한 화면 갱신<br>
 
-### 주요기능
+### **주요기능**
 
 **[매입/매출 통합 관리]**<br>
 - 홈택스, 여신금융협회 연동을 통한 매입/매출 통합 관리<br>
@@ -81,16 +80,6 @@
 - 신고서 PDF파일 변환 기능<br>
 
 
-# 4. 본인 소개
-
-|이름 |박종범|![gdKO](/picture.jpg)|
-|연락처 | jb8049(@)naver.com |
-|skill set| Frontend - HTML, CSS, Javascript|
-| | Backend - Java, Spring, Oracle|
-|자격증| SQLD, ADSP |
-
-# 5. 기타
-
 ### **ERD - 하나WITH**
  <img src="hanawith_erd.png"/><br>
 
@@ -107,6 +96,10 @@
 ### **서비스 아키텍처**
 <img src="service.png"/><br>
 
+# 4. 본인 소개
 
-
- 
+|이름 |박종범|![gdKO](/picture.jpg)|
+|연락처 | jb8049(@)naver.com |
+|skill set| Frontend - HTML, CSS, Javascript|
+| | Backend - Java, Spring, Oracle|
+|자격증| SQLD, ADSP |
