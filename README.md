@@ -18,8 +18,7 @@
 
 # 2. 프로젝트 제안서
 
-///제안서에는 시스템, 서비스 아키텍처 올리기
-   <img src="logo.png"/><br>
+<img src="logo.png"/><br>
 ## [**하나WITH 제안서**](/하나WITH_제안서.pptx)<br>
    
  
