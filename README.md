@@ -25,9 +25,58 @@
    <img src="logo.png"/><br>
 ## [**하나WITH 최종 발표자료**](/하나WITH_최종발표자료.pptx)<br>
 
+
+
+
 ## 시연 동영상 
    
    <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/n-vYRwkgDJQ" frameborder="0"></iframe>
+
+
+### 개발기간
+-2021. 09. 06 ~ 2021. 10. 05
+
+### 담당업무
+-아이디어 기획/설계 , DB모델링, Front-End, Back-End, Deploy
+
+### 개발환경
+-Language : JAVA, JavaScript
+-Database : Oracle 18c, MariaDB
+-Framewo가 : Spring, MyBatis, SpringBoot,　JPA
+-Server :　Apache ,Tomcat9
+-Cloud : GCP (Google Cloud Platform)
+-VCS :　GitHub
+-Library : JQuery, JSTL
+-Etc :　HeidiSQL, MobaXterm, Putty
+
+### 사용기술
+-Spring MVC 기반 웹 개발
+-OCR을 활용한 이미지 텍스트 추출(Template OCR, General　OCR)
+-WebSocket을 활용한 영수증 승인/반려 실시간 알림
+-JSON Web Token을 활용한 클라이언트 검증
+-Apache POI를 활용한 매출/매입 내역 엑셀 다운로드
+-Html2Canvas를 활용한 세금신고서 PDF파일 변환
+-Spring Scheduler를 활용한 batch 처리
+-Chart.js를 이용한 매출/매입 사업보고서 시각화
+-공공데이터 포털API를 활용한 사업장 진위여부 확인 및 상태조회
+-CoolSMS API를 이용한 알림 메세지 전송
+-Ajax 비동기 통신을 활용한 화면 갱신
+
+### 주요기능
+[매입/매출 통합 관리]
+- 홈택스, 여신금융협회 연동을 통한 매입/매출 통합 관리
+- OCR을 통한 영수증 종류별 세금 신고 필수 정보 자동 완성 기능
+- 전자(세금)계산서, 현금영수증, 사업용 신용카드 내역 조회 기능
+- 전자/수기 영수증 통합 조회 기능(일별, 월별, 분기별 조회)
+[사업보고서 제공] 
+- 일간, 주간, 월간 매입/매출 현황 시각화 
+- 사업보고서 업데이트 알림
+[세금신고(부가가치세 신고)]
+- 고객 증빙자료 조회/수집 기능
+- 증빙 자료 요약 집계 기능
+- 세금신고서 자동 생성 기능
+- 신고서 PDF파일 변환 기능
+
 
 # 4. 본인 소개
 
