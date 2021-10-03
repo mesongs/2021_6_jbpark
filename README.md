@@ -36,18 +36,19 @@
 
 # 4. 본인 소개
 
-본인 소개를 추가하세요
-
 |이름 |박종범|![gdKO](/picture.jpg)|
 |연락처 | jb8049(@)naver.com |
 |skill set| Frontend - HTML, CSS, Javascript|
 | | Backend - Java, Spring, Oracle|
 |자격증| SQLD, ADSP |
-|수상| |
-|특기사항| |
 
 # 5. 기타
 
-#
-   
+### **시스템 아키텍처**
+<img src="system.png"/><br>
+
+
+
+### **서비스 아키텍처**
+<img src="service.png"/><br>
  
