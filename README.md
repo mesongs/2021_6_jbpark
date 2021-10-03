@@ -20,7 +20,7 @@
 
 
    <img src="logo.png"/><br>
-##   [하나WITH 제안서](/하나WITH_제안서.pptx)<br>
+##   **[하나WITH 제안서]**(/하나WITH_제안서.pptx)<br>
    <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://youtu.be/iPW0AldBw9E" frameborder="0"></iframe>
  
 
