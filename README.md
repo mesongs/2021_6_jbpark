@@ -1,6 +1,6 @@
 # 프로젝트 제목
 
-[프로젝트 홈페이지 - https://koposoftware.github.io/template/](https://koposoftware.github.io/template/)
+[프로젝트 홈페이지 - https://github.com/koposoftware/2021_6_jbpark](https://github.com/koposoftware/2021_6_jbpark)
 
 # 1. 프로젝트 개요
 
