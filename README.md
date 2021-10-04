@@ -81,11 +81,10 @@
 
 
 ### **ERD - 하나WITH**
- <img src="hanawith_erd.png"/><br>
+ <img src="ERD_HanaWITH.JPG"/><br>
 
 
-### **ERD - 홈택스 & 여신금융협회**
- <img src="others_erd.png"/><br>
+
 
 
 ### **시스템 아키텍처**
